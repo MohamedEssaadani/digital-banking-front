@@ -1,6 +1,7 @@
 import {Sidebar} from "./components/Sidebar";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import {CustomersList} from "./components/customers/CustomersList";
+import {CustomerDetail} from "./components/customers/CustomerDetail";
 
 function App() {
   return (
@@ -20,17 +21,8 @@ function App() {
                         </nav>
                         <Switch>
                             <Route path="/"  exact />
-                            <Route path="/admin/clients"  component={CustomersList} />
-                            <Route
-                                path="/admin"
-                                render={({ match: { url } }) => (
-                                    <>
-                                        <Route
-                                            path={`${url}`}
-                                        />
-                                    </>
-                                )}
-                            />
+                            <Route path="/admin/customers" exact component={CustomersList} />
+                            <Route path="/admin/customers/:id/detail"  component={CustomerDetail} />
                         </Switch>
                     </div>
                 </div>

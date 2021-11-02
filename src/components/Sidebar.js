@@ -44,13 +44,13 @@ export function Sidebar() {
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>
-                        <LinkContainer to={"/admin/clients"}>
+                        <LinkContainer to={"/admin/customers"}>
                             <Dropdown.Item >
                                 <FontAwesomeIcon icon={faUsers} />
                                 {" "}<span>Clients</span>
                             </Dropdown.Item>
                         </LinkContainer>
-                        <LinkContainer to={"/admin/nouvea-client"}>
+                        <LinkContainer to={"/admin/nouveau-client"}>
                             <Dropdown.Item>
                                     <FontAwesomeIcon icon={faPlus} />
                                 {" "}<span>Nouveau Client</span>

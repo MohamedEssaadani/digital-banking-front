@@ -1,10 +1,14 @@
 import {applyMiddleware, combineReducers, createStore} from "redux";
 import thunk from "redux-thunk";
 import {composeWithDevTools} from "redux-devtools-extension";
-import {customersListReducer} from "../reducers/CustomersReducers";
+import {customersListReducer, getCustomerReducer} from "../reducers/CustomersReducers";
+import {accountsByCustomerReducer} from "../reducers/AccountsReducers";
 
 const reducer = combineReducers({
-    customersList: customersListReducer
+    // customer reducers
+    customersList: customersListReducer,
+    customer: getCustomerReducer,
+    customerAccounts: accountsByCustomerReducer
 });
 
 const initialState = {};

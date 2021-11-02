@@ -6,7 +6,7 @@ import {
 } from "../constants/CustomersConstants";
 import axios from "axios";
 
-// this function will get customers list from backend
+// this action will get customers list from backend
 export const getCustomersList = () => async(dispatch) => {
     try{
         // dispatch action type CUSTOMERS_LIST_REQUEST (to be used in loader)
@@ -21,7 +21,6 @@ export const getCustomersList = () => async(dispatch) => {
             type: CUSTOMERS_LIST_SUCCESS,
             payload: data
         })
-        console.log(data)
     }catch(error){
         // if there is an error then dispatch action CUSTOMERS_LIST_FAIL with the error message
         dispatch({
@@ -33,7 +32,7 @@ export const getCustomersList = () => async(dispatch) => {
         })
     }
 }
-// this function will get customer by id from backend
+// this action will get customer by id from backend
 export const getCustomerById= (id) => async (dispatch)=>{
     try{
         // dispatch action type GET_CUSTOMER_REQUEST (to be used in loader)
