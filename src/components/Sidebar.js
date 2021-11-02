@@ -5,8 +5,7 @@ import {LinkContainer} from "react-router-bootstrap";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
     faChartArea,
-    faMoneyCheck,
-    faPlus,
+    faPlus, faTabletAlt,
     faUsers
 } from '@fortawesome/free-solid-svg-icons'
 
@@ -19,7 +18,7 @@ export function Sidebar() {
             >
                 <a className="sidebar-brand d-flex align-items-center justify-content-center">
                     <div className="sidebar-brand-icon rotate-n-15">
-                        <FontAwesomeIcon icon={faMoneyCheck}/>
+                        <FontAwesomeIcon icon={faTabletAlt}/>
                     </div>
                     <div className="sidebar-brand-text mx-3">Digital Banking </div>
                 </a>

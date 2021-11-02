@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faEdit, faEye, faTrash, faUserPlus, faUsers} from "@fortawesome/free-solid-svg-icons";
+import {faEdit, faEye, faSearch, faTrash, faUserPlus, faUsers} from "@fortawesome/free-solid-svg-icons";
 import {Button, Table} from "react-bootstrap";
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
@@ -31,6 +31,12 @@ export function CustomersList() {
                         {" "}
                         <FontAwesomeIcon icon={faUsers}/> Liste des clients
                     </h1>
+
+                </div>
+                <div className={"form-group"}>
+                    <input className={"ml-2 input-lg form-control-sm"}
+                           placeholder={"Rechercher..."}
+                    />
                 </div>
             <Table className="table-sm" striped hover bordered responsive>
                 <thead>
