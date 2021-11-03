@@ -3,12 +3,14 @@ import thunk from "redux-thunk";
 import {composeWithDevTools} from "redux-devtools-extension";
 import {customersListReducer, getCustomerReducer} from "../reducers/CustomersReducers";
 import {accountsByCustomerReducer} from "../reducers/AccountsReducers";
+import {operationsByAccountReducer} from "../reducers/OperationsReducers";
 
 const reducer = combineReducers({
     // customer reducers
     customersList: customersListReducer,
     customer: getCustomerReducer,
-    customerAccounts: accountsByCustomerReducer
+    customerAccounts: accountsByCustomerReducer,
+    accountOperations: operationsByAccountReducer
 });
 
 const initialState = {};

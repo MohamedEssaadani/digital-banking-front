@@ -7,6 +7,10 @@ import {useDispatch, useSelector} from "react-redux";
 import {getCustomersList} from "../../actions/CustomersActions";
 import * as moment from 'moment'
 import {Link} from "react-router-dom";
+import Loader from "../shared/Loader";
+import Message from "../shared/Message";
+
+
 
 export function CustomersList() {
     // get dispatch
@@ -38,48 +42,57 @@ export function CustomersList() {
                            placeholder={"Rechercher..."}
                     />
                 </div>
-            <Table className="table-sm" striped hover bordered responsive>
-                <thead>
-                <th>Nom</th>
-                <th>CIN</th>
-                <th>Date Naissance</th>
-                <th>Adresse</th>
-                <th>Telephone</th>
-                <th>
-                    <Button
-                        className="btn btn-success"
-                    >
-                        <FontAwesomeIcon icon={faUserPlus}/>
-                    </Button>
-                </th>
-                </thead>
-                <tbody>
-                {
-                    customers.map(cust => {
-                        return (
-                            <tr key={customers.indexOf(cust)}>
-                                <td>{cust.name}</td>
-                                <td>{cust.cin}</td>
-                                <td>{moment(new Date(cust.birthDate)).format("DD/MM/YYYY")}</td>
-                                <td>{cust.address}</td>
-                                <td>{cust.phoneNumber}</td>
-                                <td>
-                                    <Link to={`/admin/customers/${cust.id}/detail`} className="btn btn-primary">
-                                        <FontAwesomeIcon icon={faEye}/>
-                                    </Link>{" "}
-                                    <Link to={`/admin/customers/${cust.id}/edit`} className="btn btn-success">
-                                        <FontAwesomeIcon icon={faEdit}/>
-                                    </Link>{" "}
-                                    <Link to={`/admin/customers/${cust.id}/delete`} className="btn btn-danger">
-                                        <FontAwesomeIcon icon={faTrash}/>
-                                    </Link>
-                                </td>
-                            </tr>
-                        )
-                    })
-                }
-                </tbody>
-            </Table>
+                                {
+                                    loading ? (
+                                        <Loader/>
+                                    ) : error ? (
+                                        <Message variant={"danger"} text={error}/>
+                                    ) : (
+                                        <Table className="table-sm" striped hover bordered responsive>
+                                            <thead>
+                                            <th>Nom</th>
+                                            <th>CIN</th>
+                                            <th>Date Naissance</th>
+                                            <th>Adresse</th>
+                                            <th>Telephone</th>
+                                            <th>
+                                                <Button
+                                                    className="btn btn-success"
+                                                >
+                                                    <FontAwesomeIcon icon={faUserPlus}/>
+                                                </Button>
+                                            </th>
+                                            </thead>
+                                            <tbody>
+                                            {
+                                                customers.map(cust => {
+                                                    return (
+                                                        <tr key={customers.indexOf(cust)}>
+                                                            <td>{cust.name}</td>
+                                                            <td>{cust.cin}</td>
+                                                            <td>{moment(new Date(cust.birthDate)).format("DD/MM/YYYY")}</td>
+                                                            <td>{cust.address}</td>
+                                                            <td>{cust.phoneNumber}</td>
+                                                            <td>
+                                                                <Link to={`/admin/customers/${cust.id}/detail`} className="btn btn-primary">
+                                                                    <FontAwesomeIcon icon={faEye}/>
+                                                                </Link>{" "}
+                                                                <Link to={`/admin/customers/${cust.id}/edit`} className="btn btn-success">
+                                                                    <FontAwesomeIcon icon={faEdit}/>
+                                                                </Link>{" "}
+                                                                <Link to={`/admin/customers/${cust.id}/delete`} className="btn btn-danger">
+                                                                    <FontAwesomeIcon icon={faTrash}/>
+                                                                </Link>
+                                                            </td>
+                                                        </tr>
+                                                    )
+                                                })
+                                            }
+                                            </tbody>
+                                        </Table>
+
+                                    )
+                                }
             </div>
             </div>
             </div>

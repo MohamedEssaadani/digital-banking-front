@@ -44,7 +44,7 @@ export function CustomerAccounts(props) {
                                               <td>{account.balance}</td>
                                               <td>{account.accountStatus}</td>
                                               <td>
-                                                  <Link to={`/admin/accounts/${account.id}/operations`} className="btn btn-primary">
+                                                  <Link to={`/admin/account/${account.id}/operations`} className="btn btn-primary">
                                                       <FontAwesomeIcon icon={faEye}/>
                                                       {" "}Opérations
                                                   </Link>

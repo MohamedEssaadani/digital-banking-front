@@ -2,6 +2,7 @@ import {Sidebar} from "./components/Sidebar";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import {CustomersList} from "./components/customers/CustomersList";
 import {CustomerDetail} from "./components/customers/CustomerDetail";
+import {AccountOperations} from "./components/operations/AccountOperations";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
                             <Route path="/"  exact />
                             <Route path="/admin/customers" exact component={CustomersList} />
                             <Route path="/admin/customers/:id/detail"  component={CustomerDetail} />
+                            <Route path="/admin/account/:id/operations"  component={AccountOperations} />
                         </Switch>
                     </div>
                 </div>
