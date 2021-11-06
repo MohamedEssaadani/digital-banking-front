@@ -9,6 +9,7 @@ function App() {
     <div className="App">
         <Router>
             <div id="wrapper">
+                <h1>Liste des clients</h1>
                 <Sidebar />
                 <div id="content-wrapper" className="d-flex flex-column">
                     <div id="content">
