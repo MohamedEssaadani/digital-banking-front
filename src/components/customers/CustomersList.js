@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faEdit, faEye, faSearch, faTrash, faUserPlus, faUsers} from "@fortawesome/free-solid-svg-icons";
 import {Button, Table} from "react-bootstrap";
 import {useEffect} from "react";
@@ -11,15 +11,14 @@ import Loader from "../shared/Loader";
 import Message from "../shared/Message";
 
 
-
 export function CustomersList() {
     // get dispatch
     const dispatch = useDispatch()
 
     // useSelector to get customers list
-    const { loading, customers, error } = useSelector(state => state.customersList)
+    const {loading, customers, error} = useSelector(state => state.customersList)
 
-    useEffect(()=>{
+    useEffect(() => {
         // dispatch action customersList()
         dispatch(getCustomersList())
     }, [dispatch])
@@ -30,18 +29,18 @@ export function CustomersList() {
                     <div className="card-body p-0">
                         <div className="row">
                             <div className="col-lg-10 m-5">
-                <div className="d-sm-flex align-items-center justify-content-center mb-4">
-                    <h1 className="h3 mb-0 text-gray-800">
-                        {" "}
-                        <FontAwesomeIcon icon={faUsers}/> Liste des clients
-                    </h1>
+                                <div className="d-sm-flex align-items-center justify-content-center mb-4">
+                                    <h1 className="h3 mb-0 text-gray-800">
+                                        {" "}
+                                        <FontAwesomeIcon icon={faUsers}/> Liste des clients
+                                    </h1>
 
-                </div>
-                <div className={"form-group"}>
-                    <input className={"ml-2 input-lg form-control-sm"}
-                           placeholder={"Rechercher..."}
-                    />
-                </div>
+                                </div>
+                                <div className={"form-group"}>
+                                    <input className={"ml-2 input-lg form-control-sm"}
+                                           placeholder={"Rechercher..."}
+                                    />
+                                </div>
                                 {
                                     loading ? (
                                         <Loader/>
@@ -56,11 +55,12 @@ export function CustomersList() {
                                             <th>Adresse</th>
                                             <th>Telephone</th>
                                             <th>
-                                                <Button
+                                                <Link
+                                                    to={"/admin/nouveau-client"}
                                                     className="btn btn-success"
                                                 >
                                                     <FontAwesomeIcon icon={faUserPlus}/>
-                                                </Button>
+                                                </Link>
                                             </th>
                                             </thead>
                                             <tbody>
@@ -74,13 +74,16 @@ export function CustomersList() {
                                                             <td>{cust.address}</td>
                                                             <td>{cust.phoneNumber}</td>
                                                             <td>
-                                                                <Link to={`/admin/customers/${cust.id}/detail`} className="btn btn-primary">
+                                                                <Link to={`/admin/customers/${cust.id}/detail`}
+                                                                      className="btn btn-primary">
                                                                     <FontAwesomeIcon icon={faEye}/>
                                                                 </Link>{" "}
-                                                                <Link to={`/admin/customers/${cust.id}/edit`} className="btn btn-success">
+                                                                <Link to={`/admin/customers/${cust.id}/edit`}
+                                                                      className="btn btn-success">
                                                                     <FontAwesomeIcon icon={faEdit}/>
                                                                 </Link>{" "}
-                                                                <Link to={`/admin/customers/${cust.id}/delete`} className="btn btn-danger">
+                                                                <Link to={`/admin/customers/${cust.id}/delete`}
+                                                                      className="btn btn-danger">
                                                                     <FontAwesomeIcon icon={faTrash}/>
                                                                 </Link>
                                                             </td>
@@ -93,10 +96,10 @@ export function CustomersList() {
 
                                     )
                                 }
-            </div>
-            </div>
-            </div>
-            </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </>
     )

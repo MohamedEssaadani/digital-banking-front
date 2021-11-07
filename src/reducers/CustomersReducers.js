@@ -1,4 +1,6 @@
 import {
+    ADD_CUSTOMER_FAIL,
+    ADD_CUSTOMER_REQUEST, ADD_CUSTOMER_SUCCESS,
     CUSTOMERS_LIST_FAIL,
     CUSTOMERS_LIST_REQUEST,
     CUSTOMERS_LIST_SUCCESS, GET_CUSTOMER_FAIL,
@@ -53,9 +55,21 @@ export const getCustomerReducer = (state={ customer:{} }, action)=>{
     }
 }
 
-
 // Add new customer reducer
+export const addNewCustomerReducer = (state = { customer: {} }, action) => {
+    switch (action.type) {
+        case ADD_CUSTOMER_REQUEST:
+            return { loading: true };
 
+        case ADD_CUSTOMER_SUCCESS:
+            return { loading: false, customer: action.payload };
+
+        case ADD_CUSTOMER_FAIL:
+            return { loading: false, error: action.payload };
+        default:
+            return state;
+    }
+};
 // Edit customer reducer
 
 // Delete customer reducer

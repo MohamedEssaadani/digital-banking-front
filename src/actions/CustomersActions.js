@@ -1,4 +1,6 @@
 import {
+    ADD_CUSTOMER_FAIL,
+    ADD_CUSTOMER_REQUEST, ADD_CUSTOMER_SUCCESS,
     CUSTOMERS_LIST_FAIL,
     CUSTOMERS_LIST_REQUEST,
     CUSTOMERS_LIST_SUCCESS, GET_CUSTOMER_FAIL,
@@ -60,11 +62,43 @@ export const getCustomerById= (id) => async (dispatch)=>{
     }
 }
 
-// Get Customer
-
 
 // Add new customer
+export const addNewCustomer = (customer) => async(dispatch)=> {
 
+    try{
+        // dispatch action type ADD_CUSTOMER_REQUEST (to be used in loader)
+        dispatch({
+            type: ADD_CUSTOMER_REQUEST
+        })
+
+        const config = {
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+
+        const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/CUSTOMER-SERVICE/api/customers`,
+            customer,
+            config)
+
+        // dispatch action type ADD_CUSTOMER_SUCCESS after getting the customer
+        dispatch({
+            type: ADD_CUSTOMER_SUCCESS,
+            payload: data
+        })
+
+    }catch(error){
+        // if there is an error then dispatch action ADD_CUSTOMER_FAIL with the error message
+        dispatch({
+            type: ADD_CUSTOMER_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
+        })
+    }
+}
 // Update customer
 
 // Delete customer
