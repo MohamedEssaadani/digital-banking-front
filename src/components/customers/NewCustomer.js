@@ -27,12 +27,13 @@ export function NewCustomer() {
     const handleSubmit = () => {
         const customer = {
             name,
-            birthDate,
+            birthDate:"",
             cin,
             address,
             phoneNumber
         }
-        dispatch(addNewCusgitomer(customer))
+        dispatch(addNewCustomer(customer))
+
 
     }
 

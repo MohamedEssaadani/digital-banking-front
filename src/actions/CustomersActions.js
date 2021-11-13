@@ -74,8 +74,10 @@ export const addNewCustomer = (customer) => async(dispatch)=> {
 
         const config = {
             headers: {
-                "Content-Type": "application/json",
-            },
+                //"Cache-Control": "no-cache",
+                "content-type": "application/json",
+               // "Access-Control-Allow-Origin": "*"
+            }
         };
 
         const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/CUSTOMER-SERVICE/api/customers`,
