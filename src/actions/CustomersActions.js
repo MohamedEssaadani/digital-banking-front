@@ -9,21 +9,21 @@ import {
 import axios from "axios";
 
 // this action will get customers list from backend
-export const getCustomersList = () => async(dispatch) => {
-    try{
+export const getCustomersList = () => async (dispatch) => {
+    try {
         // dispatch action type CUSTOMERS_LIST_REQUEST (to be used in loader)
         dispatch({
             type: CUSTOMERS_LIST_REQUEST
         })
 
-        const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/CUSTOMER-SERVICE/api/customers`)
+        const {data} = await axios.get(`${process.env.REACT_APP_API_URL}/CUSTOMER-SERVICE/api/customers`)
 
         // dispatch action type CUSTOMERS_LIST_SUCCESS after getting the customers list
         dispatch({
             type: CUSTOMERS_LIST_SUCCESS,
             payload: data
         })
-    }catch(error){
+    } catch (error) {
         // if there is an error then dispatch action CUSTOMERS_LIST_FAIL with the error message
         dispatch({
             type: CUSTOMERS_LIST_FAIL,
@@ -35,14 +35,14 @@ export const getCustomersList = () => async(dispatch) => {
     }
 }
 // this action will get customer by id from backend
-export const getCustomerById= (id) => async (dispatch)=>{
-    try{
+export const getCustomerById = (id) => async (dispatch) => {
+    try {
         // dispatch action type GET_CUSTOMER_REQUEST (to be used in loader)
         dispatch({
             type: GET_CUSTOMER_REQUEST
         })
 
-        const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/CUSTOMER-SERVICE/api/customers/${id}`)
+        const {data} = await axios.get(`${process.env.REACT_APP_API_URL}/CUSTOMER-SERVICE/api/customers/${id}`)
 
         // dispatch action type CUSTOMERS_LIST_SUCCESS after getting the customer
         dispatch({
@@ -50,7 +50,7 @@ export const getCustomerById= (id) => async (dispatch)=>{
             payload: data
         })
 
-    }catch(error){
+    } catch (error) {
         // if there is an error then dispatch action GET_CUSTOMER_FAIL with the error message
         dispatch({
             type: GET_CUSTOMER_FAIL,
@@ -64,9 +64,9 @@ export const getCustomerById= (id) => async (dispatch)=>{
 
 
 // Add new customer
-export const addNewCustomer = (customer) => async(dispatch)=> {
+export const addNewCustomer = (customer) => async (dispatch) => {
 
-    try{
+    try {
         // dispatch action type ADD_CUSTOMER_REQUEST (to be used in loader)
         dispatch({
             type: ADD_CUSTOMER_REQUEST
@@ -76,11 +76,11 @@ export const addNewCustomer = (customer) => async(dispatch)=> {
             headers: {
                 //"Cache-Control": "no-cache",
                 "content-type": "application/json",
-               // "Access-Control-Allow-Origin": "*"
+                // "Access-Control-Allow-Origin": "*"
             }
         };
 
-        const { data } = await axios.post(`${process.env.REACT_APP_API_URL}/CUSTOMER-SERVICE/api/customers`,
+        const {data} = await axios.post(`${process.env.REACT_APP_API_URL}/CUSTOMER-SERVICE/api/customers`,
             customer,
             config)
 
@@ -90,7 +90,7 @@ export const addNewCustomer = (customer) => async(dispatch)=> {
             payload: data
         })
 
-    }catch(error){
+    } catch (error) {
         // if there is an error then dispatch action ADD_CUSTOMER_FAIL with the error message
         dispatch({
             type: ADD_CUSTOMER_FAIL,

@@ -8,20 +8,20 @@ import {
 } from "../constants/CustomersConstants";
 
 // customers list reducer
-export const customersListReducer = (state={ customers:[] }, action)=>{
-    switch(action.type){
-        case CUSTOMERS_LIST_REQUEST:{
+export const customersListReducer = (state = {customers: []}, action) => {
+    switch (action.type) {
+        case CUSTOMERS_LIST_REQUEST: {
             return {
-                loading: true, customers:[]
+                loading: true, customers: []
             }
         }
-        case CUSTOMERS_LIST_SUCCESS:{
+        case CUSTOMERS_LIST_SUCCESS: {
             return {
                 loading: false, customers: action.payload
             }
         }
 
-        case CUSTOMERS_LIST_FAIL:{
+        case CUSTOMERS_LIST_FAIL: {
             return {
                 loading: false, error: action.payload
             }
@@ -32,20 +32,20 @@ export const customersListReducer = (state={ customers:[] }, action)=>{
 }
 
 // Get customer reducer
-export const getCustomerReducer = (state={ customer:{} }, action)=>{
-    switch(action.type){
-        case GET_CUSTOMER_REQUEST:{
+export const getCustomerReducer = (state = {customer: {}}, action) => {
+    switch (action.type) {
+        case GET_CUSTOMER_REQUEST: {
             return {
-                loading: true, customer:[]
+                loading: true, customer: []
             }
         }
-        case GET_CUSTOMER_SUCCESS:{
+        case GET_CUSTOMER_SUCCESS: {
             return {
                 loading: false, customer: action.payload
             }
         }
 
-        case GET_CUSTOMER_FAIL:{
+        case GET_CUSTOMER_FAIL: {
             return {
                 loading: false, error: action.payload
             }
@@ -56,16 +56,16 @@ export const getCustomerReducer = (state={ customer:{} }, action)=>{
 }
 
 // Add new customer reducer
-export const addNewCustomerReducer = (state = { customer: {} }, action) => {
+export const addNewCustomerReducer = (state = {customer: {}}, action) => {
     switch (action.type) {
         case ADD_CUSTOMER_REQUEST:
-            return { loading: true };
+            return {loading: true};
 
         case ADD_CUSTOMER_SUCCESS:
-            return { loading: false, customer: action.payload };
+            return {loading: false, customer: action.payload};
 
         case ADD_CUSTOMER_FAIL:
-            return { loading: false, error: action.payload };
+            return {loading: false, error: action.payload};
         default:
             return state;
     }

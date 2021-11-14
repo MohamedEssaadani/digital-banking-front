@@ -1,7 +1,7 @@
 import * as React from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faEdit, faEye, faSearch, faTrash, faUserPlus, faUsers} from "@fortawesome/free-solid-svg-icons";
-import {Button, Table} from "react-bootstrap";
+import {Table} from "react-bootstrap";
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {getCustomersList} from "../../actions/CustomersActions";
