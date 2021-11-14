@@ -15,7 +15,7 @@ export function NewCustomer() {
     const [address, setAddress] = useState('')
     const [phoneNumber, setPhoneNumber] = useState('')
     const [birthDate, setBirthDate] = useState('')
-    
+
     // success & error messages
     let [successMessage, setSuccessMessage] = useState('')
     let [errorMessage, setErrorMessage] = useState('')
@@ -26,7 +26,7 @@ export function NewCustomer() {
     // history navigate
     const history = useHistory()
 
-    const {loading, error, customer} = useSelector(state => state.newCustomer)
+    const {loading, error, customer} = useSelector(state => state.createdCustomer)
 
 
     const handleSubmit = (e) => {

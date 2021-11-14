@@ -45,17 +45,17 @@ export function EditCustomer() {
     const handleUpdate = (e) => {
         e.preventDefault()
 
-        // if user didn't fill at least name & phone number
-        if (customer.name === '' || customer.phoneNumber || '' || customer.cin || '' || customer.birthDate || '' || customer.address || '') {
+        // if user didn't fill the inputs
+        if (customer.name === '' || customer.phoneNumber === '' || customer.cin === '' || customer.birthDate === '' || customer.address === '') {
             // show error message
             setErrorMessage("Merci de remplir toutes les champs s'il vous plait!")
             setSuccessMessage("")
 
-            // if user at least has filled name & phone number
+            // if user filled the inputs
         } else {
             dispatch(UpdateCustomer(id, customerInfo))
             // show success message
-            setSuccessMessage("Le client enregistré avec succès")
+            setSuccessMessage("Le client modifié avec succès")
             setErrorMessage("")
         }
 

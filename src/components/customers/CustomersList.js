@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {faEdit, faEye, faSearch, faTrash, faUserPlus, faUsers} from "@fortawesome/free-solid-svg-icons";
-import {Table} from "react-bootstrap";
+import {faEdit, faEye, faTrash, faUserPlus, faUsers} from "@fortawesome/free-solid-svg-icons";
+import {Button, Table} from "react-bootstrap";
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {getCustomersList} from "../../actions/CustomersActions";
+import {deleteCustomerById, getCustomersList} from "../../actions/CustomersActions";
 import * as moment from 'moment'
 import {Link} from "react-router-dom";
 import Loader from "../shared/Loader";
@@ -22,6 +22,13 @@ export function CustomersList() {
         // dispatch action customersList()
         dispatch(getCustomersList())
     }, [dispatch])
+
+    const handleCustomerDelete = (id) => {
+        dispatch(deleteCustomerById(id))
+            .then(() => {
+                dispatch(getCustomersList())
+            })
+    }
     return (
         <>
             <div className="container">
@@ -82,10 +89,11 @@ export function CustomersList() {
                                                                       className="btn btn-success">
                                                                     <FontAwesomeIcon icon={faEdit}/>
                                                                 </Link>{" "}
-                                                                <Link to={`/admin/customers/${cust.id}/delete`}
-                                                                      className="btn btn-danger">
+                                                                <Button
+                                                                    onClick={() => handleCustomerDelete(cust.id)}
+                                                                    className="btn btn-danger">
                                                                     <FontAwesomeIcon icon={faTrash}/>
-                                                                </Link>
+                                                                </Button>
                                                             </td>
                                                         </tr>
                                                     )

@@ -4,7 +4,7 @@ import {
     CUSTOMERS_LIST_FAIL,
     CUSTOMERS_LIST_REQUEST,
     CUSTOMERS_LIST_SUCCESS, GET_CUSTOMER_FAIL,
-    GET_CUSTOMER_REQUEST, GET_CUSTOMER_SUCCESS
+    GET_CUSTOMER_REQUEST, GET_CUSTOMER_SUCCESS, UPDATE_CUSTOMER_FAIL, UPDATE_CUSTOMER_REQUEST, UPDATE_CUSTOMER_SUCCESS
 } from "../constants/CustomersConstants";
 
 // customers list reducer
@@ -71,5 +71,17 @@ export const addNewCustomerReducer = (state = {customer: {}}, action) => {
     }
 };
 // Edit customer reducer
+export const updateCustomerReducer = (state = {customer: {}}, action) => {
+    switch (action.type) {
+        case UPDATE_CUSTOMER_REQUEST:
+            return {loading: true};
 
-// Delete customer reducer
+        case UPDATE_CUSTOMER_SUCCESS:
+            return {loading: false, customer: action.payload};
+
+        case UPDATE_CUSTOMER_FAIL:
+            return {loading: false, error: action.payload};
+        default:
+            return state;
+    }
+};
