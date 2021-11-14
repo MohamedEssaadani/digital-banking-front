@@ -12,8 +12,8 @@ export function CustomerDetail() {
 
     // history to navigate
     const history = useHistory()
-    
-    // useSelector to get customers list
+
+    // useSelector to get customer detail
     const {loading, customer, error} = useSelector(state => state.customer)
 
     // get customer id from url using useParams() hook

@@ -56,7 +56,7 @@ export function CustomersList() {
                                             <th>Telephone</th>
                                             <th>
                                                 <Link
-                                                    to={"/admin/nouveau-client"}
+                                                    to={"/admin/new-customer"}
                                                     className="btn btn-success"
                                                 >
                                                     <FontAwesomeIcon icon={faUserPlus}/>

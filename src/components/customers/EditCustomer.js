@@ -1,62 +1,68 @@
-import {faSave, faUserPlus} from "@fortawesome/free-solid-svg-icons";
+import {faEdit, faSave, faUserPlus} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {addNewCustomer} from "../../actions/CustomersActions";
+import {getCustomerById, UpdateCustomer} from "../../actions/CustomersActions";
 import {useHistory} from "react-router-dom/cjs/react-router-dom";
 import Loader from "../shared/Loader";
 import Message from "../shared/Message";
 import {Button} from "react-bootstrap";
+import {useParams} from "react-router-dom";
 
-export function NewCustomer() {
-    // init variables
-    const [name, setName] = useState('')
-    const [cin, setCin] = useState('')
-    const [address, setAddress] = useState('')
-    const [phoneNumber, setPhoneNumber] = useState('')
-    const [birthDate, setBirthDate] = useState('')
-    
+export function EditCustomer() {
+    // get dispatch
+    const dispatch = useDispatch()
+
+    // history to navigate
+    const history = useHistory()
+
+    // useSelector to get customer detail
+    let {loading, customer, error} = useSelector(state => state.customer)
+
+    const [customerInfo, setCustomerInfo] = useState({})
+
+
+    // get customer id from url using useParams() hook
+    let {id} = useParams();
+
     // success & error messages
     let [successMessage, setSuccessMessage] = useState('')
     let [errorMessage, setErrorMessage] = useState('')
 
-    // dispatch
-    const dispatch = useDispatch()
+    useEffect(() => {
+        // dispatch action getCustomerById()
+        dispatch(getCustomerById(id))
+    }, [dispatch, id])
 
-    // history navigate
-    const history = useHistory()
+    // handle attributes changes
+    const handleInputChange = (e) => {
+        const {name, value} = e.target
+        customer[name] = value
+        setCustomerInfo({...customer})
+    }
 
-    const {loading, error, customer} = useSelector(state => state.newCustomer)
-
-
-    const handleSubmit = (e) => {
+    // update customer
+    const handleUpdate = (e) => {
         e.preventDefault()
 
         // if user didn't fill at least name & phone number
-        if (name === '' && phoneNumber === '') {
+        if (customer.name === '' || customer.phoneNumber || '' || customer.cin || '' || customer.birthDate || '' || customer.address || '') {
             // show error message
-            setErrorMessage("Merci de remplir les champs obligatoire (Nom, Téléphone) s'il vous plait!")
+            setErrorMessage("Merci de remplir toutes les champs s'il vous plait!")
             setSuccessMessage("")
 
             // if user at least has filled name & phone number
         } else {
-            const customer = {
-                name,
-                birthDate,
-                cin,
-                address,
-                phoneNumber
-            }
-            dispatch(addNewCustomer(customer))
+            dispatch(UpdateCustomer(id, customerInfo))
             // show success message
             setSuccessMessage("Le client enregistré avec succès")
             setErrorMessage("")
         }
+
     }
 
     return (
         <div className="container">
-
             <div className="card o-hidden border-0 shadow-lg my-5">
                 <div className="card-body p-0">
                     <div className="row">
@@ -74,7 +80,7 @@ export function NewCustomer() {
                                                                            variant={"danger"}/>)}
                                                 <div className="text-center">
                                                     <h1 className="h4 text-gray-900 mb-4"><FontAwesomeIcon
-                                                        icon={faUserPlus}/> Nouveau Client</h1>
+                                                        icon={faEdit}/> Modifier client</h1>
                                                 </div>
                                                 <form>
 
@@ -84,7 +90,10 @@ export function NewCustomer() {
                                                         </div>
                                                         <div className="col-sm-6 mb-3 mb-sm-0">
                                                             <input type="text" className="form-control"
-                                                                   onChange={(event) => setName(event.target.value)}/>
+                                                                   value={customer.name}
+                                                                   name={"name"}
+                                                                   onChange={handleInputChange}
+                                                            />
                                                         </div>
                                                     </div>
 
@@ -94,7 +103,10 @@ export function NewCustomer() {
                                                         </div>
                                                         <div className="col-sm-6 mb-3 mb-sm-0">
                                                             <input type="text" className="form-control"
-                                                                   onChange={(event => setCin(event.target.value))}/>
+                                                                   value={customer.cin}
+                                                                   name={"cin"}
+                                                                   onChange={handleInputChange}
+                                                            />
                                                         </div>
                                                     </div>
 
@@ -104,7 +116,10 @@ export function NewCustomer() {
                                                         </div>
                                                         <div className="col-sm-6 mb-3 mb-sm-0">
                                                             <input type="text" className="form-control"
-                                                                   onChange={(event => setAddress(event.target.value))}/>
+                                                                   value={customer.address}
+                                                                   name={"address"}
+                                                                   onChange={handleInputChange}
+                                                            />
                                                         </div>
                                                     </div>
 
@@ -114,7 +129,10 @@ export function NewCustomer() {
                                                         </div>
                                                         <div className="col-sm-6 mb-3 mb-sm-0">
                                                             <input type="text" className="form-control"
-                                                                   onChange={(event => setPhoneNumber(event.target.value))}/>
+                                                                   value={customer.phoneNumber}
+                                                                   name={"phoneNumber"}
+                                                                   onChange={handleInputChange}
+                                                            />
                                                         </div>
                                                     </div>
 
@@ -124,12 +142,15 @@ export function NewCustomer() {
                                                         </div>
                                                         <div className="col-sm-6 mb-3 mb-sm-0">
                                                             <input type="date" className="form-control"
-                                                                   onChange={(event => setBirthDate(event.target.value))}/>
+                                                                   value={customer.birthDate}
+                                                                   name={"birthDate"}
+                                                                   onChange={handleInputChange}
+                                                            />
                                                         </div>
                                                     </div>
                                                     <button className="btn btn-primary btn-user btn-block"
-                                                            onClick={handleSubmit}>
-                                                        <FontAwesomeIcon icon={faSave}/> Sauvegarder
+                                                            onClick={handleUpdate}
+                                                    ><FontAwesomeIcon icon={faSave}/> Sauvegarder
                                                     </button>
 
                                                 </form>
@@ -137,7 +158,6 @@ export function NewCustomer() {
                                         </div>
                                     )
                         }
-
                     </div>
                 </div>
             </div>

@@ -4,6 +4,7 @@ import {CustomersList} from "./components/customers/CustomersList";
 import {CustomerDetail} from "./components/customers/CustomerDetail";
 import {AccountOperations} from "./components/operations/AccountOperations";
 import {NewCustomer} from "./components/customers/NewCustomer";
+import {EditCustomer} from "./components/customers/EditCustomer";
 
 function App() {
     return (
@@ -26,7 +27,8 @@ function App() {
                                 <Route path="/admin/customers" exact component={CustomersList}/>
                                 <Route path="/admin/customers/:id/detail" component={CustomerDetail}/>
                                 <Route path="/admin/account/:id/operations" component={AccountOperations}/>
-                                <Route path="/admin/nouveau-client" component={NewCustomer}/>
+                                <Route path="/admin/new-customer" component={NewCustomer}/>
+                                <Route path="/admin/customers/:id/edit" component={EditCustomer}/>
                             </Switch>
                         </div>
                     </div>

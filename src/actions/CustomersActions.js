@@ -8,6 +8,7 @@ import {
 } from "../constants/CustomersConstants";
 import axios from "axios";
 
+
 // this action will get customers list from backend
 export const getCustomersList = () => async (dispatch) => {
     try {
@@ -34,7 +35,8 @@ export const getCustomersList = () => async (dispatch) => {
         })
     }
 }
-// this action will get customer by id from backend
+
+// This action will get customer by id from backend
 export const getCustomerById = (id) => async (dispatch) => {
     try {
         // dispatch action type GET_CUSTOMER_REQUEST (to be used in loader)
@@ -62,8 +64,7 @@ export const getCustomerById = (id) => async (dispatch) => {
     }
 }
 
-
-// Add new customer
+// Add new customer action
 export const addNewCustomer = (customer) => async (dispatch) => {
 
     try {
@@ -101,6 +102,9 @@ export const addNewCustomer = (customer) => async (dispatch) => {
         })
     }
 }
+
 // Update customer
+export const UpdateCustomer = () => {
+}
 
 // Delete customer
