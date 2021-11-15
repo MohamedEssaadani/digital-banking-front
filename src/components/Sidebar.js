@@ -1,8 +1,8 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import {Dropdown} from "react-bootstrap";
 import {LinkContainer} from "react-router-bootstrap";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {
     faChartArea,
     faPlus, faTabletAlt,
@@ -20,10 +20,10 @@ export function Sidebar() {
                     <div className="sidebar-brand-icon rotate-n-15">
                         <FontAwesomeIcon icon={faTabletAlt}/>
                     </div>
-                    <div className="sidebar-brand-text mx-3">Digital Banking </div>
+                    <div className="sidebar-brand-text mx-3">Digital Banking</div>
                 </a>
 
-                <hr className="sidebar-divider my-0" />
+                <hr className="sidebar-divider my-0"/>
 
                 <li className="nav-item active">
                     <Link className="nav-link" to="/admin/">
@@ -32,51 +32,51 @@ export function Sidebar() {
                     </Link>
                 </li>
 
-                <hr className="sidebar-divider" />
+                <hr className="sidebar-divider"/>
 
                 <div className="sidebar-heading">Gestion des clients</div>
 
                 <Dropdown className="nav-item">
-                    <Dropdown.Toggle  className="nav-link myDrop">
-                        <FontAwesomeIcon icon={faUsers} />
+                    <Dropdown.Toggle className="nav-link myDrop">
+                        <FontAwesomeIcon icon={faUsers}/>
                         {" "}Clients
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>
                         <LinkContainer to={"/admin/customers"}>
-                            <Dropdown.Item >
-                                <FontAwesomeIcon icon={faUsers} />
+                            <Dropdown.Item>
+                                <FontAwesomeIcon icon={faUsers}/>
                                 {" "}<span>Clients</span>
                             </Dropdown.Item>
                         </LinkContainer>
                         <LinkContainer to={"/admin/nouveau-client"}>
                             <Dropdown.Item>
-                                    <FontAwesomeIcon icon={faPlus} />
+                                <FontAwesomeIcon icon={faPlus}/>
                                 {" "}<span>Nouveau Client</span>
                             </Dropdown.Item>
                         </LinkContainer>
                     </Dropdown.Menu>
                 </Dropdown>
 
-                <hr className="sidebar-divider" />
+                <hr className="sidebar-divider"/>
 
                 <div className="sidebar-heading">Gestion des comptes</div>
                 <Dropdown className="nav-item">
-                    <Dropdown.Toggle  className="nav-link myDrop">
-                        <FontAwesomeIcon icon={faUsers} />
+                    <Dropdown.Toggle className="nav-link myDrop">
+                        <FontAwesomeIcon icon={faUsers}/>
                         {" "}Comptes
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>
                         <LinkContainer to={"/admin/clients"}>
-                            <Dropdown.Item >
-                                <FontAwesomeIcon icon={faUsers} />
+                            <Dropdown.Item>
+                                <FontAwesomeIcon icon={faUsers}/>
                                 {" "}<span>Comptes</span>
                             </Dropdown.Item>
                         </LinkContainer>
-                        <LinkContainer to={"/admin/nouvea-compte"}>
+                        <LinkContainer to={"/admin/new-account"}>
                             <Dropdown.Item>
-                                <FontAwesomeIcon icon={faPlus} />
+                                <FontAwesomeIcon icon={faPlus}/>
                                 {" "}<span>Nouveau Compte</span>
                             </Dropdown.Item>
                         </LinkContainer>

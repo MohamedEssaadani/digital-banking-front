@@ -7,7 +7,7 @@ import {
     addNewCustomerReducer,
     updateCustomerReducer
 } from "../reducers/CustomersReducers";
-import {accountsByCustomerReducer} from "../reducers/AccountsReducers";
+import {accountsByCustomerReducer, addNewAccountReducer} from "../reducers/AccountsReducers";
 import {operationsByAccountReducer} from "../reducers/OperationsReducers";
 
 const reducer = combineReducers({
@@ -15,9 +15,13 @@ const reducer = combineReducers({
     customersList: customersListReducer,
     customer: getCustomerReducer,
     customerAccounts: accountsByCustomerReducer,
-    accountOperations: operationsByAccountReducer,
     createdCustomer: addNewCustomerReducer,
-    updatedCustomer: updateCustomerReducer
+    updatedCustomer: updateCustomerReducer,
+    // account reducers
+    createdAccount: addNewAccountReducer,
+    // operations reducers
+    accountOperations: operationsByAccountReducer,
+
 });
 
 const initialState = {};

@@ -16,19 +16,22 @@ export function CustomersList() {
     const dispatch = useDispatch()
 
     // useSelector to get customers list
-    const {loading, customers, error} = useSelector(state => state.customersList)
+    var {loading, customers, error} = useSelector(state => state.customersList)
 
+    // use effect
     useEffect(() => {
         // dispatch action customersList()
         dispatch(getCustomersList())
     }, [dispatch])
 
+    // delete customer by id
     const handleCustomerDelete = (id) => {
         dispatch(deleteCustomerById(id))
             .then(() => {
                 dispatch(getCustomersList())
             })
     }
+
     return (
         <>
             <div className="container">
@@ -43,11 +46,7 @@ export function CustomersList() {
                                     </h1>
 
                                 </div>
-                                <div className={"form-group"}>
-                                    <input className={"ml-2 input-lg form-control-sm"}
-                                           placeholder={"Rechercher..."}
-                                    />
-                                </div>
+                             
                                 {
                                     loading ? (
                                         <Loader/>
