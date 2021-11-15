@@ -141,8 +141,9 @@ export function EditCustomer() {
                                                             <label>Date de Naissance: </label>
                                                         </div>
                                                         <div className="col-sm-6 mb-3 mb-sm-0">
-                                                            <input type="date" className="form-control"
-                                                                   value={customer.birthDate}
+                                                            <input type="date"
+                                                                   className="form-control"
+                                                                   defaultValue={customer.birthDate}
                                                                    name={"birthDate"}
                                                                    onChange={handleInputChange}
                                                             />

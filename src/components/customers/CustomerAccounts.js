@@ -3,7 +3,7 @@ import * as React from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {getAccountsByCustomer} from "../../actions/AccountsActions";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 import {faEye} from "@fortawesome/free-solid-svg-icons";
 import {Link} from "react-router-dom";
 
@@ -15,7 +15,7 @@ export function CustomerAccounts(props) {
     const {loading, accounts, error} = useSelector(state => state.customerAccounts)
 
 
-    useEffect(()=>{
+    useEffect(() => {
         // dispatch action getAccountsByCustomer()
         dispatch(getAccountsByCustomer(props.customerId))
     }, [dispatch, props])
@@ -36,20 +36,21 @@ export function CustomerAccounts(props) {
                                 </thead>
                                 <tbody>
                                 {
-                                    accounts.map((account)=>{
+                                    accounts.map((account) => {
                                         return (
-                                          <tr key={accounts.indexOf(account)}>
-                                              <td>{account.id}</td>
-                                              <td>{account.accountStatus}</td>
-                                              <td>{account.balance}</td>
-                                              <td>{account.accountStatus}</td>
-                                              <td>
-                                                  <Link to={`/admin/account/${account.id}/operations`} className="btn btn-primary">
-                                                      <FontAwesomeIcon icon={faEye}/>
-                                                      {" "}Opérations
-                                                  </Link>
-                                              </td>
-                                          </tr>
+                                            <tr key={accounts.indexOf(account)}>
+                                                <td>{account.id}</td>
+                                                <td>{account.accountType}</td>
+                                                <td>{account.balance}</td>
+                                                <td>{account.accountStatus}</td>
+                                                <td>
+                                                    <Link to={`/admin/account/${account.id}/operations`}
+                                                          className="btn btn-primary">
+                                                        <FontAwesomeIcon icon={faEye}/>
+                                                        {" "}Opérations
+                                                    </Link>
+                                                </td>
+                                            </tr>
                                         )
                                     })
                                 }

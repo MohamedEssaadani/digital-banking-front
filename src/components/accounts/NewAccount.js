@@ -12,7 +12,7 @@ import {getCustomersList} from "../../actions/CustomersActions";
 export function NewAccount() {
     // init variables
     const [accountType, setAccountType] = useState('')
-    const [balance, setBalance] = useState('')
+    const [balance, setBalance] = useState(0)
     const [customerId, setCustomerId] = useState(0)
 
     // success & error messages
@@ -32,34 +32,34 @@ export function NewAccount() {
     const {account} = useSelector(state => state.createdAccount)
 
     useEffect(() => {
-        dispatch(getCustomersList()).then(() => {
-            console.log(customers)
-        })
+        dispatch(getCustomersList())
     }, [dispatch])
 
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        /*// if user didn't fill at least name & phone number
-        if (name === '' && phoneNumber === '') {
+        // if user didn't fill required inputs
+        if (accountType === '' || balance === 0 || customerId === 0) {
             // show error message
-            setErrorMessage("Merci de remplir les champs obligatoire (Nom, Téléphone) s'il vous plait!")
+            setErrorMessage("Merci de remplir les champs obligatoire  s'il vous plait!")
             setSuccessMessage("")
-
-            // if user at least has filled name & phone number
+            // if user filled the required inputs
         } else {
-            const customer = {
-                name,
-                birthDate,
-                cin,
-                address,
-                phoneNumber
+            const account = {
+                accountType,
+                balance,
+                customerId
             }
-            dispatch(addNewCustomer(customer))
-            // show success message
-            setSuccessMessage("Le client enregistré avec succès")
-            setErrorMessage("")
-        }*/
+            dispatch(addNewAccount(account)).then(() => {
+                setAccountType("")
+                setCustomerId(0)
+                setBalance(0)
+                // show success message
+                setSuccessMessage("Le compte enregistré avec succès")
+                setErrorMessage("")
+            })
+
+        }
     }
 
     return (
@@ -91,11 +91,14 @@ export function NewAccount() {
                                                             <label>Client: </label>
                                                         </div>
                                                         <div className="col-sm-4 mb-3 mb-sm-0">
-                                                            <select className={"form-control"}>
+                                                            <select className={"form-control"}
+                                                                    onChange={(event) => setCustomerId(event.target.value)}>
+                                                                <option value={0}>---</option>
                                                                 {
                                                                     customers.map(cust => {
                                                                         return (
-                                                                            <option value={cust.id}>{cust.name}</option>
+                                                                            <option key={cust.id}
+                                                                                    value={cust.id}>{cust.name}</option>
                                                                         )
                                                                     })
                                                                 }
@@ -103,7 +106,8 @@ export function NewAccount() {
                                                         </div>
                                                         <div className={"col-sm-2 mb-3 mb-sm-0"}>
                                                             <button className={"btn btn-success"}><FontAwesomeIcon
-                                                                icon={faUserPlus}/></button>
+                                                                icon={faUserPlus}/>
+                                                            </button>
                                                         </div>
                                                     </div>
 
