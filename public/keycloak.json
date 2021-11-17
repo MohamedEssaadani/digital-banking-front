@@ -1,7 +1,7 @@
 {
   "realm": "Digital-Banking",
+  "resource": "digital-banking",
   "auth-server-url": "http://localhost:8080/auth",
   "ssl-required": "external",
-  "resource": "digital-banking",
   "public-client": true
 }

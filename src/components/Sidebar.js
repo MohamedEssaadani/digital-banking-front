@@ -8,6 +8,7 @@ import {
     faPlus, faTabletAlt,
     faUsers
 } from '@fortawesome/free-solid-svg-icons'
+import UserService from "../services/UserService";
 
 export function Sidebar() {
     return (
@@ -49,7 +50,7 @@ export function Sidebar() {
                                 {" "}<span>Clients</span>
                             </Dropdown.Item>
                         </LinkContainer>
-                        <LinkContainer to={"/admin/nouveau-client"}>
+                        <LinkContainer to={"/admin/new-customer"}>
                             <Dropdown.Item>
                                 <FontAwesomeIcon icon={faPlus}/>
                                 {" "}<span>Nouveau Client</span>
@@ -82,7 +83,10 @@ export function Sidebar() {
                         </LinkContainer>
                     </Dropdown.Menu>
                 </Dropdown>
+
+           
             </ul>
         </>
-    );
-};
+    )
+        ;
+}

@@ -9,17 +9,18 @@ const _kc = new Keycloak("/keycloak.json")
 
 const initKeycloak = (onAuthenticatedCallback) => {
     _kc.init({
-        onLoad: 'check-sso',
-        silentCheckSsoRedirectUri: window.location.origin + '/silent-check-sso.html',
-        pkceMethod: 'S256'
+        onLoad: 'login-required',
     }).then((authenticated) => {
         if (authenticated) {
+            localStorage.setItem("db-access-token", _kc.token);
+            localStorage.setItem("db-refresh-token", _kc.refreshToken);
             onAuthenticatedCallback()
         } else {
             console.warn("Not authenticated!")
             doLogin()
         }
     })
+
 }
 
 

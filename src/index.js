@@ -7,6 +7,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {Provider} from "react-redux";
 import store from "./store/store";
+import UserService from "./services/UserService";
 
 const renderApp = () => ReactDOM.render(
     <Provider store={store}>
@@ -14,6 +15,8 @@ const renderApp = () => ReactDOM.render(
     </Provider>,
     document.getElementById('root')
 );
+
+UserService.initKeycloak(renderApp)
 
 
 // If you want to start measuring performance in your app, pass a function

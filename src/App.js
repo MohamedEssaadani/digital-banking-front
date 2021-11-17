@@ -6,6 +6,12 @@ import {AccountOperations} from "./components/operations/AccountOperations";
 import {NewCustomer} from "./components/customers/NewCustomer";
 import {EditCustomer} from "./components/customers/EditCustomer";
 import {NewAccount} from "./components/accounts/NewAccount";
+import {Dropdown} from "react-bootstrap";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faPlus, faSignOutAlt, faUser, faUsers} from "@fortawesome/free-solid-svg-icons";
+import {LinkContainer} from "react-router-bootstrap";
+import * as React from "react";
+import UserService from "./services/UserService";
 
 function App() {
     return (
@@ -22,6 +28,26 @@ function App() {
                                 >
                                     <i className="fa fa-bars"></i>
                                 </button>
+
+                                <ul className="navbar-nav ml-auto">
+                                    <li className="d-inline-block ml-auto ml-md-3 my-2 my-md-0 mw-100 pt-2">
+                                        <Dropdown className="nav-item">
+                                            <Dropdown.Toggle className="btn btn-default"
+                                                             style={{backgroundColor: "white", color: "black"}}>
+                                                <FontAwesomeIcon icon={faUser}/>
+                                                {"  "}{UserService.getUsername()}
+                                            </Dropdown.Toggle>
+
+                                            <Dropdown.Menu>
+                                                <Dropdown.Item onClick={UserService.doLogout}>
+                                                    <FontAwesomeIcon icon={faSignOutAlt}/>
+                                                    {" "}<span> Déconnecter</span>
+                                                </Dropdown.Item>
+                                            </Dropdown.Menu>
+                                        </Dropdown>
+
+                                    </li>
+                                </ul>
                             </nav>
                             <Switch>
                                 <Route path="/" exact/>

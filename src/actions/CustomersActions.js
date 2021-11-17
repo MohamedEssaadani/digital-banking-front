@@ -17,7 +17,9 @@ export const getCustomersList = () => async (dispatch) => {
             type: CUSTOMERS_LIST_REQUEST
         })
 
-        const {data} = await axios.get(`${process.env.REACT_APP_API_URL}/CUSTOMER-SERVICE/api/customers`)
+        const {data} = await axios
+            .get(`${process.env.REACT_APP_API_URL}/CUSTOMER-SERVICE/api/customers`)
+
 
         // dispatch action type CUSTOMERS_LIST_SUCCESS after getting the customers list
         dispatch({
