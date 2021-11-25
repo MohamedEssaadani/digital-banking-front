@@ -5,6 +5,7 @@ import {
     CUSTOMER_ACCOUNTS_REQUEST,
     CUSTOMER_ACCOUNTS_SUCCESS
 } from "../constants/AccountsConstants";
+import UserService from "../services/UserService";
 
 // this action will get accounts of customer from backend
 export const getAccountsByCustomer = (id) => async (dispatch) => {
@@ -14,7 +15,8 @@ export const getAccountsByCustomer = (id) => async (dispatch) => {
             type: CUSTOMER_ACCOUNTS_REQUEST
         })
 
-        const {data} = await axios.get(`${process.env.REACT_APP_API_URL}/ACCOUNT-SERVICE/api/accounts/byCustomer/${id}`)
+        const {data} = await axios
+            .get(`${process.env.REACT_APP_API_URL}/ACCOUNT-SERVICE/api/accounts/byCustomer/${id}`)
 
         // dispatch action type CUSTOMER_ACCOUNTS_SUCCESS after getting accounts of customer successfully
         dispatch({
@@ -71,3 +73,4 @@ export const addNewAccount = (account) => async (dispatch) => {
         })
     }
 }
+

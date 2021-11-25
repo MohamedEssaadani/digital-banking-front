@@ -7,6 +7,7 @@ import {
     GET_CUSTOMER_REQUEST, GET_CUSTOMER_SUCCESS, UPDATE_CUSTOMER_FAIL, UPDATE_CUSTOMER_REQUEST, UPDATE_CUSTOMER_SUCCESS
 } from "../constants/CustomersConstants";
 import axios from "axios";
+import UserService from "../services/UserService";
 
 
 // this action will get customers list from backend
@@ -18,8 +19,8 @@ export const getCustomersList = () => async (dispatch) => {
         })
 
         const {data} = await axios
-            .get(`${process.env.REACT_APP_API_URL}/CUSTOMER-SERVICE/api/customers`)
-
+            .get(`${process.env.REACT_APP_API_URL}/CUSTOMER-SERVICE/api/customers`,
+                {headers: {"Authorization": `Bearer ${UserService.getToken()}`}})
 
         // dispatch action type CUSTOMERS_LIST_SUCCESS after getting the customers list
         dispatch({
@@ -46,7 +47,9 @@ export const getCustomerById = (id) => async (dispatch) => {
             type: GET_CUSTOMER_REQUEST
         })
 
-        const {data} = await axios.get(`${process.env.REACT_APP_API_URL}/CUSTOMER-SERVICE/api/customers/${id}`)
+        const {data} = await axios
+            .get(`${process.env.REACT_APP_API_URL}/CUSTOMER-SERVICE/api/customers/${id}`,
+                {headers: {"Authorization": `Bearer ${UserService.getToken()}`}})
 
         // dispatch action type CUSTOMERS_LIST_SUCCESS after getting the customer
         dispatch({
