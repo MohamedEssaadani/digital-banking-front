@@ -43,7 +43,7 @@ export function NewOperation() {
                                                            variant={"danger"}/>)}
                                 <div className="text-center">
                                     <h1 className="h4 text-gray-900 mb-4"><FontAwesomeIcon
-                                        icon={faPlus}/> Nouvea Operation</h1>
+                                        icon={faPlus}/> Nouvelle Operation</h1>
                                 </div>
                                 <form>
 

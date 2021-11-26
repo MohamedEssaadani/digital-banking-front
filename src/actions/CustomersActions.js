@@ -162,6 +162,7 @@ export const deleteCustomerById = (id) => async (dispatch) => {
                 }
             })
 
+
         // dispatch action type DELETE_CUSTOMER_SUCCESS updating the customer
         dispatch({
             type: DELETE_CUSTOMER_SUCCESS,

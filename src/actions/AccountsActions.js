@@ -48,6 +48,7 @@ export const addNewAccount = (account) => async (dispatch) => {
             headers: {
                 //"Cache-Control": "no-cache",
                 "content-type": "application/json",
+                "Authorization": `Bearer ${UserService.getToken()}`
                 // "Access-Control-Allow-Origin": "*"
             }
         };

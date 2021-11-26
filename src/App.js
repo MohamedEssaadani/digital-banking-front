@@ -12,6 +12,7 @@ import {faPlus, faSignOutAlt, faUser, faUsers} from "@fortawesome/free-solid-svg
 import {LinkContainer} from "react-router-bootstrap";
 import * as React from "react";
 import UserService from "./services/UserService";
+import {SearchAccounts} from "./components/accounts/SearchAccounts";
 
 function App() {
     return (
@@ -57,6 +58,7 @@ function App() {
                                 <Route path="/admin/new-customer" component={NewCustomer}/>
                                 <Route path="/admin/customers/:id/edit" component={EditCustomer}/>
                                 <Route path="/admin/new-account" component={NewAccount}/>
+                                <Route path="/admin/accounts" component={SearchAccounts}/>
                             </Switch>
                         </div>
                     </div>

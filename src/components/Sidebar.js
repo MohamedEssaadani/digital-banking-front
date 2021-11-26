@@ -69,7 +69,7 @@ export function Sidebar() {
                     </Dropdown.Toggle>
 
                     <Dropdown.Menu>
-                        <LinkContainer to={"/admin/clients"}>
+                        <LinkContainer to={"/admin/accounts"}>
                             <Dropdown.Item>
                                 <FontAwesomeIcon icon={faUsers}/>
                                 {" "}<span>Comptes</span>
@@ -84,7 +84,7 @@ export function Sidebar() {
                     </Dropdown.Menu>
                 </Dropdown>
 
-           
+
             </ul>
         </>
     )
