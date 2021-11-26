@@ -16,7 +16,7 @@ export const getAccountsByCustomer = (id) => async (dispatch) => {
         })
 
         const {data} = await axios
-            .get(`${process.env.REACT_APP_API_URL}/ACCOUNT-SERVICE/api/accounts/byCustomer/${id}`)
+            .get(`${process.env.REACT_APP_API_URL}/ACCOUNT-SERVICE/api/accounts/byCustomer/${id}`, {headers: {"Authorization": `Bearer ${UserService.getToken()}`}})
 
         // dispatch action type CUSTOMER_ACCOUNTS_SUCCESS after getting accounts of customer successfully
         dispatch({

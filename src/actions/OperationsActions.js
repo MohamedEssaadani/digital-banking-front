@@ -4,6 +4,7 @@ import {
     ACCOUNT_OPERATIONS_REQUEST,
     ACCOUNT_OPERATIONS_SUCCESS, ADD_OPERATION_FAIL, ADD_OPERATION_REQUEST, ADD_OPERATION_SUCCESS
 } from "../constants/OperationsConstants";
+import UserService from "../services/UserService";
 
 
 // this action will get operations of account from backend
@@ -14,7 +15,13 @@ export const getOperationsByAccount = (id) => async (dispatch) => {
             type: ACCOUNT_OPERATIONS_REQUEST
         })
 
-        const {data} = await axios.get(`${process.env.REACT_APP_API_URL}/OPERATION-SERVICE/api/operations/byAccount/${id}`)
+        const {data} = await axios
+            .get(`${process.env.REACT_APP_API_URL}/OPERATION-SERVICE/api/operations/byAccount/${id}`,
+                {
+                    headers: {
+                        "Authorization": `Bearer ${UserService.getToken()}`
+                    }
+                })
 
         // dispatch action type ACCOUNT_OPERATIONS_SUCCESS after getting operations of account successfully
         dispatch({

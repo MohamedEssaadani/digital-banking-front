@@ -78,17 +78,15 @@ export const addNewCustomer = (customer) => async (dispatch) => {
             type: ADD_CUSTOMER_REQUEST
         })
 
-        const config = {
-            headers: {
-                //"Cache-Control": "no-cache",
-                "content-type": "application/json",
-                // "Access-Control-Allow-Origin": "*"
-            }
-        };
-
+  
         const {data} = await axios.post(`${process.env.REACT_APP_API_URL}/CUSTOMER-SERVICE/api/customers`,
             customer,
-            config)
+            {
+                headers: {
+                    "content-type": "application/json",
+                    "Authorization": `Bearer ${UserService.getToken()}`
+                }
+            })
 
         // dispatch action type ADD_CUSTOMER_SUCCESS after creating the customer
         dispatch({
@@ -120,6 +118,8 @@ export const UpdateCustomer = (id, customer) => async (dispatch) => {
         const config = {
             headers: {
                 "content-type": "application/json",
+                "Authorization": "Bearer " + UserService.getToken(),
+
             }
         };
 
