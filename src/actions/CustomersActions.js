@@ -78,7 +78,7 @@ export const addNewCustomer = (customer) => async (dispatch) => {
             type: ADD_CUSTOMER_REQUEST
         })
 
-  
+
         const {data} = await axios.post(`${process.env.REACT_APP_API_URL}/CUSTOMER-SERVICE/api/customers`,
             customer,
             {
@@ -156,7 +156,11 @@ export const deleteCustomerById = (id) => async (dispatch) => {
 
 
         await axios.delete(`${process.env.REACT_APP_API_URL}/CUSTOMER-SERVICE/api/customers/${id}`,
-            id)
+            {
+                headers: {
+                    "Authorization": `Bearer ${UserService.getToken()}`
+                }
+            })
 
         // dispatch action type DELETE_CUSTOMER_SUCCESS updating the customer
         dispatch({

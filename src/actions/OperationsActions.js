@@ -2,7 +2,10 @@ import axios from "axios";
 import {
     ACCOUNT_OPERATIONS_FAIL,
     ACCOUNT_OPERATIONS_REQUEST,
-    ACCOUNT_OPERATIONS_SUCCESS, ADD_OPERATION_FAIL, ADD_OPERATION_REQUEST, ADD_OPERATION_SUCCESS
+    ACCOUNT_OPERATIONS_SUCCESS,
+    ADD_OPERATION_FAIL,
+    ADD_OPERATION_REQUEST,
+    ADD_OPERATION_SUCCESS
 } from "../constants/OperationsConstants";
 import UserService from "../services/UserService";
 

@@ -64,7 +64,6 @@ export function NewAccount() {
 
     return (
         <div className="container">
-
             <div className="card o-hidden border-0 shadow-lg my-5">
                 <div className="card-body p-0">
                     <div className="row">
@@ -144,11 +143,9 @@ export function NewAccount() {
                                         </div>
                                     )
                         }
-
                     </div>
                 </div>
             </div>
         </div>
-
     )
 }
