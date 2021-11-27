@@ -1,16 +1,28 @@
 import Message from "../shared/Message";
 import {Button} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faPlus, faSave, faSearch, faUserPlus} from "@fortawesome/free-solid-svg-icons";
+import {faSearch} from "@fortawesome/free-solid-svg-icons";
 import {useHistory} from "react-router-dom";
+import {useState} from "react";
 
 export function SearchAccounts() {
+    // init cin & numero de compte
+    const [cin, setCin] = useState("")
+    const [accountNumber, setAccountNumber] = useState("")
+
     // history
     const history = useHistory()
 
     // search accounts
     const handleSearch = (e) => {
         e.preventDefault()
+        if (cin !== "" && accountNumber !== "") {
+            // search accounts by customer CIN & accountNumber
+        } else if (cin !== "" && accountNumber === "") {
+            // search accounts by customer CIN
+        } else if (cin === "" && accountNumber !== "") {
+            // search accounts by accountNumber
+        }
     }
     return (
         <div className="container">
@@ -33,7 +45,12 @@ export function SearchAccounts() {
                                             <label>Par Client: </label>
                                         </div>
                                         <div className="col-sm-4 mb-3 mb-sm-0">
-                                            <input className={"form-control"} type={"text"} placeholder={"CIN.."}/>
+                                            <input className={"form-control"}
+                                                   type={"text"}
+                                                   placeholder={"CIN.."}
+                                                   value={cin}
+                                                   onChange={(e) => setCin(e.target.value)}
+                                            />
                                         </div>
                                     </div>
 
@@ -42,19 +59,69 @@ export function SearchAccounts() {
                                             <label>Par Numéro de compte: </label>
                                         </div>
                                         <div className="col-sm-4 mb-3 mb-sm-0">
-                                            <input className={"form-control"} type={"text"}
-                                                   placeholder={"Numero de compte.."}/>
+                                            <input className={"form-control"}
+                                                   type={"text"}
+                                                   placeholder={"Numero de compte.."}
+                                                   value={accountNumber}
+                                                   onChange={(e) => setAccountNumber(e.target.value)}
+                                            />
                                         </div>
                                     </div>
-
-
                                     <button className="btn btn-primary btn-user btn-block"
                                             onClick={handleSearch}>
                                         <FontAwesomeIcon icon={faSearch}/> Rechercher
                                     </button>
-
                                 </form>
                             </div>
+                            {/*
+                                 <Table className="table-sm" striped hover bordered responsive>
+                                            <thead>
+                                            <th>Nom</th>
+                                            <th>CIN</th>
+                                            <th>Date Naissance</th>
+                                            <th>Adresse</th>
+                                            <th>Telephone</th>
+                                            <th>
+                                                <Link
+                                                    to={"/admin/new-customer"}
+                                                    className="btn btn-success"
+                                                >
+                                                    <FontAwesomeIcon icon={faUserPlus}/>
+                                                </Link>
+                                            </th>
+                                            </thead>
+                                            <tbody>
+                                            {
+                                                customers.map(cust => {
+                                                    return (
+                                                        <tr key={customers.indexOf(cust)}>
+                                                            <td>{cust.name}</td>
+                                                            <td>{cust.cin}</td>
+                                                            <td>{moment(new Date(cust.birthDate)).format("DD/MM/YYYY")}</td>
+                                                            <td>{cust.address}</td>
+                                                            <td>{cust.phoneNumber}</td>
+                                                            <td>
+                                                                <Link to={`/admin/customers/${cust.id}/detail`}
+                                                                      className="btn btn-primary">
+                                                                    <FontAwesomeIcon icon={faEye}/>
+                                                                </Link>{" "}
+                                                                <Link to={`/admin/customers/${cust.id}/edit`}
+                                                                      className="btn btn-success">
+                                                                    <FontAwesomeIcon icon={faEdit}/>
+                                                                </Link>{" "}
+                                                                <Button
+                                                                    onClick={() => handleCustomerDelete(cust.id)}
+                                                                    className="btn btn-danger">
+                                                                    <FontAwesomeIcon icon={faTrash}/>
+                                                                </Button>
+                                                            </td>
+                                                        </tr>
+                                                    )
+                                                })
+                                            }
+                                            </tbody>
+                                        </Table>
+                            */}
                         </div>
 
                     </div>
