@@ -1,10 +1,11 @@
-import {Button} from "react-bootstrap";
+import {Button, Table} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faSearch} from "@fortawesome/free-solid-svg-icons";
-import {useHistory} from "react-router-dom";
+import {faEye, faSearch} from "@fortawesome/free-solid-svg-icons";
+import {Link, useHistory} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {getAccountsByCustomer, getAccountsByCustomerCin} from "../../actions/AccountsActions";
+import * as React from "react";
 
 export function SearchAccounts() {
     // get dispatch
@@ -14,6 +15,9 @@ export function SearchAccounts() {
     const [customerId, setCustomerId] = useState("")
     const [accountNumber, setAccountNumber] = useState("")
 
+    //
+    const {loading, accounts, error} = useSelector(state => state.customerAccounts)
+
     // history
     const history = useHistory()
 
@@ -22,11 +26,11 @@ export function SearchAccounts() {
     const handleSearch = (e) => {
         e.preventDefault()
         if (customerId !== "" && accountNumber !== "") {
-            // search accounts by customer CIN & accountNumber
+            // search accounts by customer Id & accountNumber
 
         } else if (customerId !== "" && accountNumber === "") {
-            // search accounts by customer CIN
-
+            // search accounts by customer Id
+            dispatch(getAccountsByCustomer(customerId))
 
         } else if (customerId === "" && accountNumber !== "") {
             // search accounts by accountNumber
@@ -79,55 +83,48 @@ export function SearchAccounts() {
                                     </button>
                                 </form>
                             </div>
-                            {/*
-                                 <Table className="table-sm" striped hover bordered responsive>
-                                            <thead>
-                                            <th>Nom</th>
-                                            <th>CIN</th>
-                                            <th>Date Naissance</th>
-                                            <th>Adresse</th>
-                                            <th>Telephone</th>
-                                            <th>
-                                                <Link
-                                                    to={"/admin/new-customer"}
-                                                    className="btn btn-success"
-                                                >
-                                                    <FontAwesomeIcon icon={faUserPlus}/>
-                                                </Link>
-                                            </th>
-                                            </thead>
-                                            <tbody>
-                                            {
-                                                customers.map(cust => {
-                                                    return (
-                                                        <tr key={customers.indexOf(cust)}>
-                                                            <td>{cust.name}</td>
-                                                            <td>{cust.cin}</td>
-                                                            <td>{moment(new Date(cust.birthDate)).format("DD/MM/YYYY")}</td>
-                                                            <td>{cust.address}</td>
-                                                            <td>{cust.phoneNumber}</td>
-                                                            <td>
-                                                                <Link to={`/admin/customers/${cust.id}/detail`}
-                                                                      className="btn btn-primary">
-                                                                    <FontAwesomeIcon icon={faEye}/>
-                                                                </Link>{" "}
-                                                                <Link to={`/admin/customers/${cust.id}/edit`}
-                                                                      className="btn btn-success">
-                                                                    <FontAwesomeIcon icon={faEdit}/>
-                                                                </Link>{" "}
-                                                                <Button
-                                                                    onClick={() => handleCustomerDelete(cust.id)}
-                                                                    className="btn btn-danger">
-                                                                    <FontAwesomeIcon icon={faTrash}/>
-                                                                </Button>
-                                                            </td>
-                                                        </tr>
-                                                    )
-                                                })
-                                            }
-                                            </tbody>
-                                        </Table>
-                            */}
+                            {
+                                accounts && accounts.length > 0 && (
+
+                                    <div className="row">
+                                        <div className="col-lg-10 m-5">
+                                            <h1 className="h4 text-gray-900 mb-4">Comptes : </h1>
+                                            <Table className="table-sm" striped hover bordered responsive>
+                                                <thead>
+                                                <th>Numero de compte</th>
+                                                <th>Type de compte</th>
+                                                <th>Solde</th>
+                                                <th>Status</th>
+                                                <th>Client</th>
+                                                <th></th>
+                                                </thead>
+                                                <tbody>
+                                                {
+                                                    accounts.map((account) => {
+                                                        return (
+                                                            <tr key={accounts.indexOf(account)}>
+                                                                <td>{account.id}</td>
+                                                                <td>{account.accountType}</td>
+                                                                <td>{account.balance}</td>
+                                                                <td>{account.accountStatus}</td>
+                                                                <td>{account.customer.name}</td>
+                                                                <td>
+                                                                    <Link to={`/admin/account/${account.id}/operations`}
+                                                                          className="btn btn-primary">
+                                                                        <FontAwesomeIcon icon={faEye}/>
+                                                                        {" "}Opérations
+                                                                    </Link>
+                                                                </td>
+                                                            </tr>
+                                                        )
+                                                    })
+                                                }
+                                                </tbody>
+                                            </Table>
+                                        </div>
+                                    </div>
+                                )
+                            }
                         </div>
 
                     </div>
