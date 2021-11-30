@@ -7,7 +7,11 @@ import {
     addNewCustomerReducer,
     updateCustomerReducer
 } from "../reducers/CustomersReducers";
-import {accountsByCustomerReducer, addNewAccountReducer} from "../reducers/AccountsReducers";
+import {
+    accountsByCustomerCinReducer,
+    accountsByCustomerReducer,
+    addNewAccountReducer
+} from "../reducers/AccountsReducers";
 import {operationsByAccountReducer} from "../reducers/OperationsReducers";
 
 const reducer = combineReducers({

@@ -1,12 +1,16 @@
 import {
     ADD_ACCOUNT_FAIL,
-    ADD_ACCOUNT_REQUEST, ADD_ACCOUNT_SUCCESS,
+    ADD_ACCOUNT_REQUEST,
+    ADD_ACCOUNT_SUCCESS,
+    CUSTOMER_ACCOUNTS_BY_CIN_FAIL,
+    CUSTOMER_ACCOUNTS_BY_CIN_REQUEST,
+    CUSTOMER_ACCOUNTS_BY_CIN_SUCCESS,
     CUSTOMER_ACCOUNTS_FAIL,
     CUSTOMER_ACCOUNTS_REQUEST,
     CUSTOMER_ACCOUNTS_SUCCESS
 } from "../constants/AccountsConstants";
 
-// Get Accounts of customer reducer
+// Get Accounts of customer BY ID reducer
 export const accountsByCustomerReducer = (state = {accounts: []}, action) => {
     switch (action.type) {
         case CUSTOMER_ACCOUNTS_REQUEST: {

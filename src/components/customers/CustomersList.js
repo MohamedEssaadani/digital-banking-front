@@ -46,14 +46,14 @@ export function CustomersList() {
                                     </h1>
 
                                 </div>
-                             
+
                                 {
                                     loading ? (
                                         <Loader/>
                                     ) : error ? (
                                         <Message variant={"danger"} text={error}/>
                                     ) : (
-                                        <Table className="table-sm" striped hover bordered responsive>
+                                        <Table warn className="table-sm" striped hover bordered responsive>
                                             <thead>
                                             <th>Nom</th>
                                             <th>CIN</th>

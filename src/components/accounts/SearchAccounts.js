@@ -1,26 +1,34 @@
-import Message from "../shared/Message";
 import {Button} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSearch} from "@fortawesome/free-solid-svg-icons";
 import {useHistory} from "react-router-dom";
-import {useState} from "react";
+import {useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {getAccountsByCustomer, getAccountsByCustomerCin} from "../../actions/AccountsActions";
 
 export function SearchAccounts() {
+    // get dispatch
+    const dispatch = useDispatch()
+
     // init cin & numero de compte
-    const [cin, setCin] = useState("")
+    const [customerId, setCustomerId] = useState("")
     const [accountNumber, setAccountNumber] = useState("")
 
     // history
     const history = useHistory()
 
+
     // search accounts
     const handleSearch = (e) => {
         e.preventDefault()
-        if (cin !== "" && accountNumber !== "") {
+        if (customerId !== "" && accountNumber !== "") {
             // search accounts by customer CIN & accountNumber
-        } else if (cin !== "" && accountNumber === "") {
+
+        } else if (customerId !== "" && accountNumber === "") {
             // search accounts by customer CIN
-        } else if (cin === "" && accountNumber !== "") {
+
+
+        } else if (customerId === "" && accountNumber !== "") {
             // search accounts by accountNumber
         }
     }
@@ -47,9 +55,8 @@ export function SearchAccounts() {
                                         <div className="col-sm-4 mb-3 mb-sm-0">
                                             <input className={"form-control"}
                                                    type={"text"}
-                                                   placeholder={"CIN.."}
-                                                   value={cin}
-                                                   onChange={(e) => setCin(e.target.value)}
+                                                   value={customerId}
+                                                   onChange={(e) => setCustomerId(e.target.value)}
                                             />
                                         </div>
                                     </div>
@@ -61,7 +68,6 @@ export function SearchAccounts() {
                                         <div className="col-sm-4 mb-3 mb-sm-0">
                                             <input className={"form-control"}
                                                    type={"text"}
-                                                   placeholder={"Numero de compte.."}
                                                    value={accountNumber}
                                                    onChange={(e) => setAccountNumber(e.target.value)}
                                             />
