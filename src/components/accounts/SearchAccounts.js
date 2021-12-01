@@ -87,7 +87,7 @@ export function SearchAccounts() {
                                 accounts && accounts.length > 0 && (
 
                                     <div className="row">
-                                        <div className="col-lg-10 m-5">
+                                        <div className="col-lg-12 m-5">
                                             <h1 className="h4 text-gray-900 mb-4">Comptes : </h1>
                                             <Table className="table-sm" striped hover bordered responsive>
                                                 <thead>
