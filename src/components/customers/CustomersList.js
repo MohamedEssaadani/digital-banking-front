@@ -46,7 +46,6 @@ export function CustomersList() {
                                     </h1>
 
                                 </div>
-
                                 {
                                     loading ? (
                                         <Loader/>

@@ -108,7 +108,6 @@ export const addNewCustomer = (customer) => async (dispatch) => {
 
 // Update customer
 export const UpdateCustomer = (id, customer) => async (dispatch) => {
-
     try {
         // dispatch action type UPDATE_CUSTOMER_REQUEST (to be used in loader)
         dispatch({

@@ -51,7 +51,6 @@ export function SearchAccounts() {
                                         icon={faSearch}/> Chercher des comptes</h1>
                                 </div>
                                 <form>
-
                                     <div className="form-group row">
                                         <div className="col-sm-6 mb-3 mb-sm-0">
                                             <label>Par Client: </label>
