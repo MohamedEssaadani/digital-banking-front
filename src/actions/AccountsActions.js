@@ -3,7 +3,7 @@ import {
     ADD_ACCOUNT_FAIL,
     ADD_ACCOUNT_REQUEST, ADD_ACCOUNT_SUCCESS, CUSTOMER_ACCOUNTS_FAIL,
     CUSTOMER_ACCOUNTS_REQUEST,
-    CUSTOMER_ACCOUNTS_SUCCESS
+    CUSTOMER_ACCOUNTS_SUCCESS, GET_ACCOUNT_BY_ID_FAIL, GET_ACCOUNT_BY_ID_REQUEST, GET_ACCOUNT_BY_ID_SUCCESS
 } from "../constants/AccountsConstants";
 import UserService from "../services/UserService";
 
@@ -75,3 +75,31 @@ export const addNewAccount = (account) => async (dispatch) => {
     }
 }
 
+// Get Account By Id Action
+export const getAccountById = (id) => async (dispatch) => {
+    try {
+        // dispatch action type CUSTOMER_ACCOUNTS_REQUEST (to be used in loader)
+        dispatch({
+            type: GET_ACCOUNT_BY_ID_REQUEST
+        })
+
+        const {data} = await axios
+            .get(`${process.env.REACT_APP_API_URL}/ACCOUNT-SERVICE/api/accounts/${id}`, {headers: {"Authorization": `Bearer ${UserService.getToken()}`}})
+
+        // dispatch action type GET_ACCOUNT_BY_ID_ after getting accounts of customer successfully
+        dispatch({
+            type: GET_ACCOUNT_BY_ID_SUCCESS,
+            payload: data
+        })
+
+    } catch (error) {
+        // if there is an error then dispatch action GET_ACCOUNT_BY_ID_FAIL with the error message
+        dispatch({
+            type: GET_ACCOUNT_BY_ID_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
+        })
+    }
+}
