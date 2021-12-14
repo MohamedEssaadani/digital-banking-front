@@ -37,10 +37,26 @@ const updateToken = (successCallBack) => {
 
 const isLoggedIn = () => !!_kc.token;
 
-const getUsername = () => _kc.tokenParsed?.preferred_username;
+const getUsername = () => _kc.tokenParsed?.preferred_username
+
+
+const getUserFullName = () => _kc.tokenParsed.name
+
 
 const hasRole = (roles) => roles.some((role) => _kc.hasRealmRole(role));
 
-const UserService = {initKeycloak, doLogin, doLogout, isLoggedIn, getToken, updateToken, getUsername};
+const userProfile = () => `${_kc.authServerUrl}/realms/Digital-Banking/account`
+
+const UserService = {
+    initKeycloak,
+    doLogin,
+    doLogout,
+    isLoggedIn,
+    getToken,
+    updateToken,
+    getUsername,
+    getUserFullName,
+    userProfile
+};
 
 export default UserService;

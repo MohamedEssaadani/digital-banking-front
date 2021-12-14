@@ -8,7 +8,6 @@ import {
     faPlus, faTabletAlt,
     faUsers
 } from '@fortawesome/free-solid-svg-icons'
-import UserService from "../services/UserService";
 
 export function Sidebar() {
     return (

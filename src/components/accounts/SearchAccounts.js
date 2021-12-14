@@ -16,8 +16,8 @@ export function SearchAccounts() {
     const [accountNumber, setAccountNumber] = useState("")
 
     //
-    const {loading, accounts, error} = useSelector(state => state.customerAccounts)
-
+    var {loading, accounts, error} = useSelector(state => state.customerAccounts)
+    
     // history
     const history = useHistory()
 

@@ -1,5 +1,5 @@
 import {Sidebar} from "./components/Sidebar";
-import {BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import {BrowserRouter as Router, Switch, Route, Link, useHistory} from "react-router-dom";
 import {CustomersList} from "./components/customers/CustomersList";
 import {CustomerDetail} from "./components/customers/CustomerDetail";
 import {AccountOperations} from "./components/operations/AccountOperations";
@@ -15,6 +15,10 @@ import UserService from "./services/UserService";
 import {SearchAccounts} from "./components/accounts/SearchAccounts";
 
 function App() {
+
+    const getUserProfile = () => {
+        window.location.href = UserService.userProfile()
+    }
     return (
         <div className="App">
             <Router>
@@ -36,10 +40,16 @@ function App() {
                                             <Dropdown.Toggle className="btn btn-default"
                                                              style={{backgroundColor: "white", color: "black"}}>
                                                 <FontAwesomeIcon icon={faUser}/>
-                                                {"  "}{UserService.getUsername()}
+                                                {"  "}{UserService.getUserFullName()}
                                             </Dropdown.Toggle>
 
                                             <Dropdown.Menu>
+                                                <Dropdown.Item
+                                                    onClick={getUserProfile}
+                                                >
+                                                    <FontAwesomeIcon icon={faUser}/>
+                                                    {" "}<span> Profil</span>
+                                                </Dropdown.Item>
                                                 <Dropdown.Item onClick={UserService.doLogout}>
                                                     <FontAwesomeIcon icon={faSignOutAlt}/>
                                                     {" "}<span> Déconnecter</span>
@@ -65,7 +75,8 @@ function App() {
                 </div>
             </Router>
         </div>
-    );
+    )
+        ;
 }
 
 export default App;
