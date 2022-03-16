@@ -1,6 +1,6 @@
 ![architecture](architecture.png)
-![customers](customers.png)
-![customer-detail](customer-detail.png)
+![customers](customers.jpg)
+![customer-detail](customer-detail.jpg)
 ![new-account](new-account.png)
 ![search-account](search-account.png)
 ![operations](operations.png)
